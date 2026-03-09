@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { AppConfigModule } from './common/config/config.module';
 import { DatabaseModule } from './common/database/database.module';
 import { HttpExceptionsFilter } from './common/filters/http-exception.filter';
+import { TimeoutInterceptor } from './common/interceptor/timeout.intercept';
 import { TransformInterceptor } from './common/interceptor/transform.interceptor';
 
 @Module({
@@ -26,6 +27,10 @@ import { TransformInterceptor } from './common/interceptor/transform.interceptor
     {
       provide: APP_INTERCEPTOR,
       useClass: TransformInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TimeoutInterceptor,
     },
   ],
 })
