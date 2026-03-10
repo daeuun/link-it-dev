@@ -7,11 +7,13 @@ import { DatabaseModule } from './common/database/database.module';
 import { HttpExceptionsFilter } from './common/filters/http-exception.filter';
 import { TimeoutInterceptor } from './common/interceptor/timeout.intercept';
 import { TransformInterceptor } from './common/interceptor/transform.interceptor';
+import { HealthModule } from './modules/health/health.module';
 
 @Module({
   imports: [
     AppConfigModule,
     DatabaseModule,
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [
