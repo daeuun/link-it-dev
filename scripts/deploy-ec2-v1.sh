@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# 배포 시작 전 권한 수정
+sudo chown -R $USER:$USER /home/ubuntu/app
+sudo chown -R $USER:$USER /home/ubuntu/.npm
+
 # 현재 실행 중인 포트 확인
 if [ -f /etc/nginx/conf.d/service-url.inc ]; then
     CURRENT_PORT=$(grep -oP '127.0.0.1:\K\d{4}' /etc/nginx/conf.d/service-url.inc)
