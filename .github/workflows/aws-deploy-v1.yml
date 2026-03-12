@@ -29,13 +29,17 @@ jobs:
           node-version: 22
           cache: 'npm'
 
+      - name: Create env
+        run: |
+          echo "${{ secrets.PROD_APP_ENV_V1 }}" > .env
+
       - name: Install dependencies & Build App
         run: |
           npm ci
           npm run build
 
       - name: Make Zip
-        run: zip -r ./deploy.zip dist package.json package-lock.json ecosystem.config.js scripts
+        run: zip -r ./deploy.zip dist package.json package-lock.json .env ecosystem.config.js scripts
         shell: bash
 
       - name: Transfer files to Server
