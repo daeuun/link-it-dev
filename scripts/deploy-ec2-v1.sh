@@ -17,7 +17,8 @@ else
     CURRENT_PORT=3001
 fi
 
-if [ "$CURRENT_PORT" -eq 3000 ]; then
+# 대상 포트 변경
+if [ "${CURRENT_PORT:-0}" -eq 3000 ]; then
   TARGET_PORT=3001
 else
   TARGET_PORT=3000
