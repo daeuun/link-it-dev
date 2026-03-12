@@ -39,7 +39,7 @@ jobs:
           npm run build
 
       - name: Make Zip
-        run: zip -r ./deploy.zip dist package.json package-lock.json .env ecosystem.config.js scripts
+        run: zip -r ./deploy.zip dist package.json package-lock.json .env ecosystem.config.js scripts tsconfig.json tsconfig.build.json
         shell: bash
 
       - name: Transfer files to Server
