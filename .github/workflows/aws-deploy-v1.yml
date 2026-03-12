@@ -58,5 +58,5 @@ jobs:
             cd ~/app
             sudo unzip -o deploy.zip
             npm install --prod
-            chmod +x ./scripts/deploy-aws-v1.sh
+            chmod +x ./scripts/deploy-ec2-v1.sh
             bash ./scripts/deploy-ec2-v1.sh
