@@ -4,6 +4,12 @@
 sudo chown -R $USER:$USER /home/ubuntu/app
 sudo chown -R $USER:$USER /home/ubuntu/.npm
 
+# 임시처리
+rm -rf ~/.npm
+rm -rf dist
+npm ci
+npm run build
+
 # 현재 실행 중인 포트 확인
 if [ -f /etc/nginx/conf.d/service-url.inc ]; then
     CURRENT_PORT=$(grep -oP '127.0.0.1:\K\d{4}' /etc/nginx/conf.d/service-url.inc)
