@@ -6,7 +6,7 @@ import { validation } from '../utils/validation';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV}`,
+      envFilePath: `.env`,
       validationSchema: validation
     }),
   ],

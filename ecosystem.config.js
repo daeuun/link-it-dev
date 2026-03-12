@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: `app-${process.env.PORT}`,
+    name: `linkit-app`,
     script: 'dist/main.js',
     instances: 1,
     exec_mode: 'fork',
@@ -8,8 +8,7 @@ module.exports = {
     out_file: './log/access.log',
     log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
     env: {
-      NODE_ENV: 'prod',
-      PORT: process.env.PORT || 3000
+      NODE_ENV: 'prod'
     },
   }]
 };
