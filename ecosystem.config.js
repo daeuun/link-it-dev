@@ -1,5 +1,6 @@
 module.exports = {
   apps: [{
+    name: `linkit-app-${process.env.PORT || 'linkit-app'}`,
     script: 'dist/main.js',
     instances: 1,
     exec_mode: 'fork',
