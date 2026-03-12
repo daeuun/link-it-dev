@@ -21,6 +21,9 @@ fi
 
 echo "  ✅ Server port: '$CURRENT_PORT' -> '$TARGET_PORT'"
 
+# 타겟 포트의 프로세스 종료
+pm2 delete "app-$TARGET_PORT" || true
+
 # 새로운 포트로 PM2 신규 프로세스 run
 PORT=$TARGET_PORT pm2 start ecosystem.config.js --name "app-$TARGET_PORT"
 
@@ -50,7 +53,7 @@ echo "set \$upstream_port ${TARGET_PORT};" | sudo tee /etc/nginx/conf.d/service-
 sudo service nginx reload
 
 # 기존 프로세스 종료
-if [ -n $CURRENT_PORT ] ; then
+if [ -n "$CURRENT_PORT" ] && [ "$CURRENT_PORT" != "$TARGET_PORT" ]; then
   sudo pm2 delete "app-$CURRENT_PORT" || true
 fi
 echo "  ✨ Deployment Completed!"
