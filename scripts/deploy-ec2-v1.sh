@@ -13,23 +13,24 @@ else
   TARGET_PORT=3000
 fi
 
-echo "  - Server port: '$CURRENT_PORT' -> '$TARGET_PORT'"
+echo "  ✅ Server port: '$CURRENT_PORT' -> '$TARGET_PORT'"
 
 # 새로운 포트로 PM2 신규 프로세스 run
 PORT=$TARGET_PORT pm2 start ecosystem.config.js --name "app-$TARGET_PORT"
 
 # 신규 프로세스 정상 가동 확인
 max_retry=10
-for retrys in `seq 2 $max_retry` do
-  echo "🔍 Health checking on $TARGET_PORT..."
+for retrys in `seq 2 $max_retry`
+do
+  echo "  🔍 Health checking on ${TARGET_PORT}..."
   sleep 3
-  health_response=$(curl -s localhost:${TARGET_PORT}/health)
-  health_up=$(echo ${health_response} | grep '"status":"ok"')
+  health_response=$(curl -s "localhost:${TARGET_PORT}/health")
+  health_up=$(echo "${health_response}" | grep '"status":"ok"')
   if [ -n "$health_up" ]; then
     echo "  ✅ New server is ready"
     break
   else
-    echo "  - unhealthy state: ${health_response} ${health_up} ... (${retrys})"
+    echo "  ❌ unhealthy state: ${health_response} ... (${retrys}/${max_retry})"
   fi
   if [ ${retrys} -eq $max_retry ]; then
     echo "  ❌ Health check failed"
