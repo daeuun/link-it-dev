@@ -7,10 +7,15 @@ else
     CURRENT_PORT=3001
 fi
 
-if [ $CURRENT_PORT -eq 3000 ]; then
+if [ "$CURRENT_PORT" -eq 3000 ]; then
   TARGET_PORT=3001
 else
   TARGET_PORT=3000
+fi
+
+if [ -z "$TARGET_PORT" ]; then
+  echo "  ❌ Error: TARGET_PORT is not set!"
+  exit 1
 fi
 
 echo "  ✅ Server port: '$CURRENT_PORT' -> '$TARGET_PORT'"
