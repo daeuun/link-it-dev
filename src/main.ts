@@ -11,7 +11,7 @@ async function bootstrap() {
   setupGlobalPipes(app);
   setSwaggerConfig(app);
   const configService = app.get(ConfigService);
-  const port = configService.get<number>('PORT', 3000);
+  const port = process.env.PORT || configService.get<number>('SERVER_PORT') || 3000;
   await app.listen(port);
 }
 bootstrap();

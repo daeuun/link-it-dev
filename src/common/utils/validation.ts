@@ -2,7 +2,7 @@ import * as Joi from 'joi';
 
 export const validation: Joi.Schema = Joi.object({
   NODE_ENV: Joi.string().valid('dev', 'prod').required(),
-  SERVER_PORT: Joi.number().required(),
+  SERVER_PORT: Joi.number().optional(),
 
   // Swagger
   SWAGGER_USER: Joi.string().required(),
