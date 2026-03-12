@@ -56,7 +56,6 @@ jobs:
           port: 22
           script: |
             cd ~/app
-            sudo unzip -o deploy.zip
-            npm install --prod
+            unzip -o deploy.zip
             sudo chmod +x ./scripts/deploy-ec2-v1.sh
             bash ./scripts/deploy-ec2-v1.sh
