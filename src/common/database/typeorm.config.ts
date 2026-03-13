@@ -21,5 +21,7 @@ export const setTypeOrmConfig = (configService: ConfigService): TypeOrmModuleOpt
     logging: configService.get<boolean>('DB_LOGGING', false),
     retryAttempts: isProd ? 10 : 1,
     useUTC: false,
+
+    ssl: isProd ? { rejectUnauthorized: false } : false, // SSL 허용
   };
 }

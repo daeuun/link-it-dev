@@ -1,9 +1,15 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
+import { webcrypto } from 'node:crypto';
 import { initializeTransactionalContext } from 'typeorm-transactional';
 import { AppModule } from './app.module';
 import { setSwaggerConfig } from './common/config/swagger.config';
+
+Object.defineProperty(globalThis, 'crypto', {
+  get: () => webcrypto,
+  configurable: false,
+});
 
 async function bootstrap() {
   initializeTransactionalContext();
@@ -18,7 +24,7 @@ bootstrap();
 
 /** * 전역 검증 파이프 설정
  */
- function setupGlobalPipes(app: INestApplication) {
+function setupGlobalPipes(app: INestApplication) {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true, // DTO에 정의되어 있지 않은 속성 제거 
