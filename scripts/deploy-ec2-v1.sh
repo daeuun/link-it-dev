@@ -2,7 +2,6 @@
 
 # 현재 실행 중인 포트 확인
 if [ -f /etc/nginx/conf.d/service-url.inc ]; then
-set $upstream_port 3000; 라고 되어잇다
     CURRENT_PORT=$(grep -oP 'upstream_port \K\d+' /etc/nginx/conf.d/service-url.inc)
 else
     CURRENT_PORT=3001
@@ -23,7 +22,9 @@ fi
 echo "  ✅ Server port: '$CURRENT_PORT' -> '$TARGET_PORT'"
 
 # 타겟 포트의 프로세스 종료
-pm2 delete "app-$TARGET_PORT" || true
+if pm2 describe "app-$TARGET_PORT" > /dev/null 2>&1; then
+  pm2 delete "app-$TARGET_PORT"
+fi
 
 # 새로운 포트로 PM2 신규 프로세스 run
 PORT=$TARGET_PORT pm2 start ecosystem.config.js --name "app-$TARGET_PORT"
