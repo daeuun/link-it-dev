@@ -55,6 +55,6 @@ sudo service nginx reload
 
 # 기존 프로세스 종료
 if [ -n "$CURRENT_PORT" ] && [ "$CURRENT_PORT" != "$TARGET_PORT" ]; then
-  sudo pm2 delete "app-$CURRENT_PORT" || true
+  pm2 delete "app-$CURRENT_PORT" || true
 fi
 echo "  ✨ Deployment Completed!"
