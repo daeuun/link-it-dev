@@ -59,10 +59,6 @@ jobs:
           key: ${{ secrets.EC2_VM_SSH_KEY_V1 }}
           port: 22
           script: |
-            # NVM 환경 로드
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            
             cd ~/app
             unzip -o deploy.zip
             sudo chown -R ubuntu:ubuntu ~/app
