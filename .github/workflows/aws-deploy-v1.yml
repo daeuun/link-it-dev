@@ -61,5 +61,7 @@ jobs:
           script: |
             cd ~/app
             unzip -o deploy.zip
+            sudo chown -R ubuntu:ubuntu ~/app
+            npm ci --omit=dev --no-fund --no-audit --unsafe-perm=false
             sudo chmod +x ./scripts/deploy-ec2-v1.sh
             bash ./scripts/deploy-ec2-v1.sh
