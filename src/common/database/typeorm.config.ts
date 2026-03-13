@@ -19,7 +19,6 @@ export const setTypeOrmConfig = (configService: ConfigService): TypeOrmModuleOpt
 
     synchronize: isProd ? false : configService.get<boolean>('SYNCHRONIZE', false),
     logging: configService.get<boolean>('DB_LOGGING', false),
-    retryAttempts: isProd ? 10 : 1,
     useUTC: false,
 
     ssl: isProd ? { rejectUnauthorized: false } : false, // SSL 허용
